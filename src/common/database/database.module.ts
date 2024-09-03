@@ -1,26 +1,25 @@
 import { Module } from '@nestjs/common';
-import { envConfig } from 'src/config/env';
+// import { envConfig } from 'src/config/env';
 import { DataSource } from 'typeorm';
 import { DatabaseService } from './database.service';
 
 const dbOptions = {
   //this name refers to connection name but for consistency purpose Database is same as connection name.
-  name: envConfig.app.database.name,
+  name: 'microservice',
   type: 'postgres' as any,
-  host: envConfig.app.database.host,
-  port: envConfig.app.database.port,
-  username: envConfig.app.database.user,
-  password: envConfig.app.database.password,
-  database: envConfig.app.database.name,
+  host: 'localhost',
+  port: 5432,
+  username: 'dharmil',
+  password: 'dharmil@1225',
+  database: 'microservice',
 };
 
 export const connection = new DataSource({
   ...dbOptions,
   entities: [__dirname + '/entities/*.entity{.ts,.js}'],
   migrations: [__dirname + '/migrations/*{.ts,.js}'],
-  synchronize: false,
+  synchronize: true,
   logging: true,
-  applicationName: 'web_backend',
   migrationsTableName: 'migrations',
 });
 
