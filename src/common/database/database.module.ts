@@ -1,17 +1,15 @@
 import { Module } from '@nestjs/common';
-// import { envConfig } from 'src/config/env';
 import { DataSource } from 'typeorm';
 import { DatabaseService } from './database.service';
 
 const dbOptions = {
-  //this name refers to connection name but for consistency purpose Database is same as connection name.
-  name: 'microservice',
+  name: process.env.DB_NAME,
   type: 'postgres' as any,
   host: 'localhost',
   port: 5432,
-  username: 'dharmil',
-  password: 'dharmil@1225',
-  database: 'microservice',
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 };
 
 export const connection = new DataSource({
