@@ -5,15 +5,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Kafka microservice setup for consumer
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.KAFKA,
     options: {
       client: {
-        brokers: ['localhost:9092'], // Replace with your Kafka broker addresses
+        brokers: ['localhost:9092'],
       },
       consumer: {
-        groupId: 'my-consumer-group', // Unique consumer group ID
+        groupId: 'my-consumer-group',
       },
     },
   });

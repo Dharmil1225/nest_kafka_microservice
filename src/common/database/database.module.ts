@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { DatabaseService } from './database.service';
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 const dbOptions = {
   name: process.env.DB_NAME,
   type: 'postgres' as any,
